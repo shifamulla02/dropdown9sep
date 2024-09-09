@@ -1,62 +1,89 @@
 <html>
 	<head>
-		<title>branch app by shifa</title>
+		<title> temperature converter by shifa </title>
 		<style>
-			*{font-size:40px; font-family:Times New Roman;}
-			body{background-color:azure;}
+			*{font-size:40px; font-family: Times New Roman;}
+			body{background-color: PeachPuff;}
 		</style>
 	</head>
 
-
 	<body>
 		<center>
-			<h1> ~ Engineering Information ~ </h1>
-			<form onsubmit="check()">
-				<label for="name" > Enter Name </label>	
-				<input type="text" 	id="name"	placeholder="enter your name" />
+			<h1> ~ TEMPERATURE CONVERTER ~ </h1>
+			<form onsubmit="convertCF()">
+
+				<label for="cel" > Enter in celcius :</label>
+				<input type="text"	id="cel"	placeholder="deg celsius"/>
+				
 				<br/><br/>
-		 		<label for="year">Select Year </label>
-				<select id="year">
-					<option value= "First year"> FE </option>
-					<option value= "Second year"> SE </option>
-					<option value= "Third year"> TE </option>
-					<option value= "Last year"> BE </option>
-				</select>
-				<br/><br/> 
 				<input type="submit"/>
 			</form>
-			<h2 id="msg" />
-			
+ 
+			<form onsubmit="convertFC()">
+
+				<label for="far" > Enter in fahrenheit :</label>
+				<input type="text" 	id="far"	placeholder="deg fahrenheit"/>
+				
+				<br/><br/>
+				<input type="submit"/>
+			</form>
+
+			<h2 id="msg"/>
+
 			<script>
-				function check()
+				function convertCF()
 				{
 					event.preventDefault();
-					let name= document.getElementById("name"); 
-					let year= document.getElementById("year"); 
+					let cel= document.getElementById("cel");
 					let msg= document.getElementById("msg");
-
-					let n=name.value;
-					let y=year.value;
-		
-					if (n.trim()==="")
+					let c= parseFloat(cel.value);
+					 
+					if(cel.value==="")
 					{
-						alert("please enter your name!");
+						alert("enter a value!");
 						msg.innerHTML="";
-						name.focus();
+						cel.focus(); 
 						return;
 					}
 					
-					if (!n.match("^[A-Za-z ]+$"))
+					else
 					{
-						alert("only alphabets allowed!");
+					let con1="";
+
+					con1=(c*1.8)+32;
+					msg.innerHTML= "convertion of " + c + " deg celsius to fahrenheit is " + con1;
+					}
+				}
+
+				function convertFC()
+				{
+					event.preventDefault();
+					let far= document.getElementById("far");
+					let msg= document.getElementById("msg");
+					 
+					let f= parseFloat(far.value);
+					 
+					if(far.value==="")
+					{
+						alert("enter a value!");
 						msg.innerHTML="";
-						name.focus();
+						far.focus(); 
 						return;
 					}
+					
+					else
+					{
+					let con2="";
 
-					msg.innerHTML= "Your name is " + n + " and you are currently studying in the " + y;
+					con2=(f-32)*5/9;
+					msg.innerHTML= "convertion of " + f + " deg fahrenheit to celsius is " + con2;
+					}
 				}
+
+
 			</script>
+		
 		</center>
 	</body>
+
 </html>
